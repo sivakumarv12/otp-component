@@ -1,5 +1,5 @@
 [build]
-  base = "angular-app"
+  base = "otp-component"
   command = "npm run build"
   publish = "dist/browser"
 

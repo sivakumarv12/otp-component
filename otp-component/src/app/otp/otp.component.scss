@@ -6,7 +6,7 @@
 .bwc-one-time-pin {
   &__form-field {
     width: 56px;
-    margin-right: bwc-layout--bs-grd(2);
+    margin-right: 16px;
 
     input {
       text-align: center;
@@ -14,6 +14,6 @@
   }
 
   &__input-wrapper {
-    margin-bottom: bwc-layout--bs-grd(-3);
+    margin-bottom: -24;
   }
 }

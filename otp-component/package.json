@@ -20,7 +20,6 @@
     "@angular/platform-browser": "19.2.2",
     "@angular/platform-browser-dynamic": "19.2.2",
     "@angular/router": "19.2.2",
-    "@aviato/components": "0.0.0-next.c969f4219110c00a7bf2f12d7d4a7618550b58e2",
     "cookie-parser": "1.4.7",
     "netlify-cli": "^22.1.6",
     "rxjs": "7.8.1",
