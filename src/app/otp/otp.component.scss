@@ -1,0 +1,19 @@
+:host {
+  display: block;
+  margin-bottom: bwc-layout--bs-grd(3);
+}
+
+.bwc-one-time-pin {
+  &__form-field {
+    width: 56px;
+    margin-right: bwc-layout--bs-grd(2);
+
+    input {
+      text-align: center;
+    }
+  }
+
+  &__input-wrapper {
+    margin-bottom: bwc-layout--bs-grd(-3);
+  }
+}

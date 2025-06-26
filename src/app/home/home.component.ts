@@ -1,28 +1,25 @@
 import { NgIf } from '@angular/common';
 import {Component, CUSTOM_ELEMENTS_SCHEMA, OnInit, ViewChild} from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import {MatCardModule} from "@angular/material/card";
+
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatRadioModule } from '@angular/material/radio';
 
-import {BwcCardModule, BwcFormModule, BwcOneTimePinComponent} from "@aviato/components";
+import { BwcFormModule, BwcOneTimePinComponent} from "@aviato/components";
+import { OtpComponent } from "../otp/otp.component";
 
 @Component({
     selector: 'app-home',
     imports: [
-      MatCardModule,
-      BwcCardModule,
-      MatInputModule,
-      MatFormFieldModule,
-      ReactiveFormsModule,
-      MatRadioModule,
-      BwcFormModule,
-      MatButtonModule,
-      BwcOneTimePinComponent,
-      NgIf
-    ],
+    MatInputModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    BwcFormModule,
+    MatButtonModule,
+    BwcOneTimePinComponent,
+    OtpComponent,
+],
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss'],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

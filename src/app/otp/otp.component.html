@@ -1,0 +1,27 @@
+<div class="bwc-one-time-pin__input-wrapper">
+  @for (input of inputs.controls; track $index; let i = $index) {
+    <mat-form-field class="bwc-one-time-pin__form-field" hideRequiredMarker floatLabel="always" appearance="outline">
+      <input
+        #inputEl
+        type="tel"
+        inputmode="numeric"
+        pattern="\d*"
+        matInput
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        [attr.autocomplete]="i === 0 ? 'one-time-code' : null"
+        [formControl]="$any(input)"
+        (blur)="_onTouched()"
+        (focus)="handleFocus($event)"
+        (input)="handleInput($event)"
+        (keydown)="handleKeyDown($event, i)"
+        (keypress)="handleKeyPress($event, i)"
+        (paste)="handlePaste($event, i)"
+      />
+    </mat-form-field>
+  }
+</div>
+<div class="bwc-one-time-pin__content-wrapper bwc-typo-caption">
+  <ng-content select="mat-error" />
+</div>

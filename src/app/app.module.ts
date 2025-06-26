@@ -12,7 +12,6 @@ import {
   BwcPageTemplateComponent,
   BwcSkiplinkIntl,
 } from '@aviato/components';
-import { MatCardModule } from '@angular/material/card';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app.routes';
@@ -22,10 +21,7 @@ import { AppRoutingModule } from './app.routes';
   imports: [
     BrowserModule,
     RouterModule.forRoot([]),
-    BwcPageTemplateComponent,
     BrowserAnimationsModule,
-    BwcLogoHeaderComponent,
-    MatCardModule,
     AppRoutingModule,
     BwcCoreModule,
     HomeComponent,
