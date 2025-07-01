@@ -128,6 +128,10 @@ export class OtpComponent implements OnInit {
     // Always sanitize current input field
     input.value = digitsOnly;
 
+    if (digitsOnly.length !== this.size) {
+      return;
+    }
+
     if (digitsOnly.length === this.inputs.controls.length) {
       const limit = Math.min(digitsOnly.length, this.inputs.controls.length);
 
