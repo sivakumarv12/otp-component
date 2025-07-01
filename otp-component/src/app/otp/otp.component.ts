@@ -116,6 +116,7 @@ export class OtpComponent implements OnInit {
   }
 
   public handleInput(event: Event): void {
+     event.preventDefault();
     if (this.scheduledFocus !== null) {
       this.focusInput(this.scheduledFocus);
       this.scheduledFocus = null;
@@ -129,6 +130,7 @@ export class OtpComponent implements OnInit {
     input.value = digitsOnly;
 
     if (digitsOnly.length !== this.size) {
+      event.preventDefault();
       return;
     }
 
