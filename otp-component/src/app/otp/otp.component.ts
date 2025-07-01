@@ -131,6 +131,7 @@ export class OtpComponent implements OnInit {
 
     if (digitsOnly.length !== this.size) {
       event.preventDefault();
+      this.updatePlainValue();
       return;
     }
 
