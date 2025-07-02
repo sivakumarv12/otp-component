@@ -132,6 +132,7 @@ export class OtpComponent implements OnInit {
       return;
     }
 
+
     if (digitsOnly.length === this.inputs.controls.length) {
       const limit = Math.min(digitsOnly.length, this.inputs.controls.length);
 
