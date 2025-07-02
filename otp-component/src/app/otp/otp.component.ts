@@ -128,24 +128,38 @@ export class OtpComponent implements OnInit {
     // Always sanitize current input field
     input.value = digitsOnly;
 
-  if (digitsOnly.length !== 1 && digitsOnly.length  < this.inputs.controls.length) {
-    input.value = ''; // Clear the input field if more than one digit
+if (digitsOnly.length === this.size) {
+    for (let i = 0; i < this.size; i++) {
+      this.inputs.controls[i]?.setValue(digitsOnly[i]);
+      this.inputEls[i].value = digitsOnly[i]; // Update DOM input field
+    }
+    this.focusInput(this.inputEls.length - 1); // Move focus to last
+    this._onTouched();
+    this.updatePlainValue();
     return;
   }
 
-
-    if (digitsOnly.length === this.inputs.controls.length) {
-      const limit = Math.min(digitsOnly.length, this.inputs.controls.length);
-
-      for (let i = 0; i < limit; i++) {
-        this.inputs.controls[i]?.setValue(digitsOnly[i]);
-      }
-
-      this.focusInput(this.inputEls.length - 1);
-      this._onTouched();
+  // Case 2: Normal single-digit input
+  if (digitsOnly.length === 1) {
+    const index = this.inputEls.toArray().findIndex(el => el.nativeElement === input);
+    if (index !== -1) {
+      this.inputs.controls[index]?.setValue(digitsOnly);
     }
 
+    // Move to next input if not the last
+    if (index < this.inputEls.length - 1) {
+      this.focusInput(index + 1);
+    }
+
+    this._onTouched();
     this.updatePlainValue();
+    return;
+  }
+
+  // Case 3: Invalid input (e.g., empty, too many/few digits)
+    input.value = '';
+    this.updatePlainValue();
+    return;
   }
 
   public handleFocus(event: FocusEvent): void {
