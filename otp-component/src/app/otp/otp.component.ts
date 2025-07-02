@@ -128,9 +128,10 @@ export class OtpComponent implements OnInit {
     // Always sanitize current input field
     input.value = digitsOnly;
 
-    if (digitsOnly.length !== this.size) {
-      return;
-    }
+  if (digitsOnly.length !== 1) {
+    input.value = ''; // Clear the input field if more than one digit
+    return;
+  }
 
 
     if (digitsOnly.length === this.inputs.controls.length) {
@@ -142,9 +143,6 @@ export class OtpComponent implements OnInit {
 
       this.focusInput(this.inputEls.length - 1);
       this._onTouched();
-    } else{
-       this.inputs.setValue(new Array(this.size).fill(''));
-       return;
     }
 
     this.updatePlainValue();
