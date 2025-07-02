@@ -124,42 +124,42 @@ export class OtpComponent implements OnInit {
     const input = event.target as HTMLInputElement;
     const rawValue = input?.value || '';
     const digitsOnly = rawValue.replace(/\D/g, ''); // Strip non-digits
-
+    const inputElements = this.inputEls.toArray();
     // Always sanitize current input field
     input.value = digitsOnly;
 
-if (digitsOnly.length === this.size) {
-    for (let i = 0; i < this.size; i++) {
-      this.inputs.controls[i]?.setValue(digitsOnly[i]);
-      this.inputEls.toArray()[i].nativeElement.value = digitsOnly[i]; // Update DOM input field
-    }
-    this.focusInput(this.inputEls.length - 1); // Move focus to last
-    this._onTouched();
-    this.updatePlainValue();
-    return;
-  }
-
-  // Case 2: Normal single-digit input
-  if (digitsOnly.length === 1) {
-    const index = this.inputEls.toArray().findIndex(el => el.nativeElement === input);
-    if (index !== -1) {
-      this.inputs.controls[index]?.setValue(digitsOnly);
+    // Full paste — exact number of expected digits
+    if (digitsOnly.length === this.size) {
+      for (let i = 0; i < this.size; i++) {
+        this.inputs.controls[i]?.setValue(digitsOnly[i]);
+        if (inputElements[i]) {
+          inputElements[i].nativeElement.value = digitsOnly[i];
+        }
+      }
+      this.focusInput(this.size - 1);
+      this._onTouched();
+      this.updatePlainValue();
+      return;
     }
 
-    // Move to next input if not the last
-    if (index < this.inputEls.length - 1) {
-      this.focusInput(index + 1);
+    // Single digit input — normal user typing
+    if (digitsOnly.length === 1) {
+      const index = inputElements.findIndex((el) => el.nativeElement === input);
+      if (index !== -1) {
+        this.inputs.controls[index]?.setValue(digitsOnly);
+        this._onTouched();
+        this.updatePlainValue();
+
+        if (index < this.size - 1) {
+          this.focusInput(index + 1);
+        }
+      }
+      return;
     }
 
-    this._onTouched();
-    this.updatePlainValue();
-    return;
-  }
-
-  // Case 3: Invalid input (e.g., empty, too many/few digits)
+    // Invalid input (empty, too long, non-digit paste)
     input.value = '';
     this.updatePlainValue();
-    return;
   }
 
   public handleFocus(event: FocusEvent): void {
