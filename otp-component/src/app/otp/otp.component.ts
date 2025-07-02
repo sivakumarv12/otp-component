@@ -131,7 +131,7 @@ export class OtpComponent implements OnInit {
 if (digitsOnly.length === this.size) {
     for (let i = 0; i < this.size; i++) {
       this.inputs.controls[i]?.setValue(digitsOnly[i]);
-      this.inputEls[i].value = digitsOnly[i]; // Update DOM input field
+      this.inputEls.toArray()[i].nativeElement.value = digitsOnly[i]; // Update DOM input field
     }
     this.focusInput(this.inputEls.length - 1); // Move focus to last
     this._onTouched();
