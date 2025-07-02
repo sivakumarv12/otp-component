@@ -128,7 +128,7 @@ export class OtpComponent implements OnInit {
     // Always sanitize current input field
     input.value = digitsOnly;
 
-  if (digitsOnly.length !== 1) {
+  if (digitsOnly.length !== 1 || digitsOnly.length  > this.inputs.controls.length) {
     input.value = ''; // Clear the input field if more than one digit
     return;
   }
